@@ -1,3 +1,0 @@
-﻿# CMSC 22000 Homework
-
-HOLLY_WEI (HFWEI)
