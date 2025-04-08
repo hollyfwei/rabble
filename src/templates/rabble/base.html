@@ -43,9 +43,19 @@
     <nav class="navbar navbar-expand-lg shadow-sm px-4">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">Rabble</a>
-            <div class="d-flex ms-auto">
-                <a class="btn btn-login" href="{% url 'login' %}">Login</a>
-            </div>
+            {% if user.is_authenticated %}
+                <div class="d-flex ms auto">
+                    <a class="btn btn-login me-2" href="{% url 'profile' %}">Profile</a>
+                    <form action="{% url 'logout' %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-login">Logout</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="d-flex ms-auto">
+                    <a class="btn btn-login" href="{% url 'login' %}">Login</a>
+                </div>
+            {% endif %}
         </div>
     </nav>
 
