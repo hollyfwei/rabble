@@ -38,7 +38,7 @@ class Subrabble(models.Model):
     visibility = models.PositiveSmallIntegerField(choices=Visibility.choices, default=Visibility.PUBLIC)
 
     community = models.ForeignKey(Community, on_delete=models.CASCADE)
-    subrabble_name = models.TextField(unique=True)
+    subrabble_name = models.TextField()
     description = models.TextField()
     anonymous_permissions = models.BooleanField(default=False)
     users = models.ManyToManyField(User, related_name='subrabble_users', blank=True)
@@ -71,19 +71,14 @@ class Comment(models.Model):
 
     def __str__(self):
         if self.anonymity:
-            return f"Anonymous Comment on Post {self.post.post_id}: {self.body}"
+            return f"Anonymous Comment on Post {self.post.post_id}: {self.body[:30]}"
         else:
-            return f"Comment by {self.user.username} on Post {self.post.post_id}: {self.body}"
+            return f"Comment by {self.user.username} on Post {self.post.id}: {self.body[:30]}"
         
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, null=True, blank=True)
-    
-    class LikeableType(models.IntegerChoices):
-        POST = 1, "Post"
-        COMMENT = 2, "Comment"
-    likeable_type = models.PositiveSmallIntegerField(choices=LikeableType.choices, default=LikeableType.POST)
     
     class Meta:
         constraints = [
@@ -111,12 +106,12 @@ class Like(models.Model):
 
     def __str__(self):
         if self.post:
-            return f"Like on Post {self.post.post_id} by {self.user.username}"
+            return f"Like on Post {self.post.id} by {self.user.username}"
         elif self.comment:
-            return f"Like on Comment {self.comment.comment_id} by {self.user.username}"
+            return f"Like on Comment {self.comment.id} by {self.user.username}"
 
 class Conversation(models.Model):
-    community_id = models.ForeignKey(Community, on_delete=models.CASCADE)
+    community = models.ForeignKey(Community, on_delete=models.CASCADE)
     title = models.TextField()
     users = models.ManyToManyField(User, related_name='conversations', blank=True)
 
@@ -130,5 +125,5 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Message from {self.user.username} ({self.timestamp}): {self.text}..."
+        return f"Message from {self.user.username} ({self.timestamp}): {self.text[:30]}..."
     
