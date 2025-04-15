@@ -81,28 +81,10 @@ class Like(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, null=True, blank=True)
     
     class Meta:
-        constraints = [
-            # Ensure only one of post or comment is liked
-            models.CheckConstraint(
-                check=(
-                    models.Q(post__isnull=False, comment__isnull=True) |
-                    models.Q(post__isnull=True, comment__isnull=False)
-                ),
-                name='like_either_post_or_comment'
-            ),
-            # Unique like per user/post
-            models.UniqueConstraint(
-                fields=['user', 'post'],
-                name='unique_like_per_user_post',
-                condition=models.Q(post__isnull=False)
-            ),
-            # Unique like per user/comment
-            models.UniqueConstraint(
-                fields=['user', 'comment'],
-                name='unique_like_per_user_comment',
-                condition=models.Q(comment__isnull=False)
-            ),
-        ]
+        unique_together = (
+            ('user', 'post'),
+            ('user', 'comment'),
+        )
 
     def __str__(self):
         if self.post:
