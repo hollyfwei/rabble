@@ -28,3 +28,6 @@ Models generated with Generative AI systems...
     methods for N-to-M relationship mappings & went over all models afterwards to 
     ensure consistency
 
+Additional Tasks
+    ChatGPT - indicated task should be completed in the admin.py file 
+
