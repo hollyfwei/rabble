@@ -16,3 +16,12 @@ def subrabble_detail(request, identifier):
     posts = subrabble.posts.all()
     return render(request, "rabble/subrabble_detail.html", 
                   {"subrabble": subrabble, "posts": posts})
+
+def post_detail(request, identifier, pk):
+    subrabble = Subrabble.objects.get(identifier=identifier)
+    post = subrabble.posts.get(pk=pk)
+    comments = post.comments.all()
+    return render(request, "rabble/post_detail.html", 
+                  {"subrabble": subrabble, 
+                   "post": post , 
+                   "comments": comments})
