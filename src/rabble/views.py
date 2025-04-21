@@ -10,3 +10,7 @@ def index(request):
 
 def profile(request):
     return render(request, "rabble/profile.html")
+
+def subrabble_detail(request, identifier):
+    subrabble = Subrabble.objects.get(identifier=identifier)
+    return render(request, "rabble/subrabble_detail.html", {"subrabble": subrabble})
