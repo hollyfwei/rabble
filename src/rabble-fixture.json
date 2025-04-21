@@ -1,0 +1,248 @@
+[
+{
+    "model": "rabble.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$pWCfTKsovgYzGkNc7YEzyq$qspPyGd6JmbF40MS9ZvzsAysRxGqeHbav6tPORDQsSE=",
+        "last_login": "2025-04-21T16:04:18.062Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-04-07T17:15:48.130Z",
+        "profile_picture": null,
+        "short_bio": null,
+        "interests": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "rabble.user",
+    "pk": 2,
+    "fields": {
+        "password": "test",
+        "last_login": "2025-04-21T16:05:07Z",
+        "is_superuser": false,
+        "username": "sam",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-21T16:04:51Z",
+        "profile_picture": "",
+        "short_bio": "",
+        "interests": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "rabble.user",
+    "pk": 3,
+    "fields": {
+        "password": "test",
+        "last_login": "2025-04-21T16:06:17Z",
+        "is_superuser": false,
+        "username": "alex",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-21T16:06:13Z",
+        "profile_picture": "",
+        "short_bio": "",
+        "interests": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "rabble.user",
+    "pk": 4,
+    "fields": {
+        "password": "chris",
+        "last_login": "2025-04-21T16:06:28Z",
+        "is_superuser": false,
+        "username": "chris",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-21T16:06:24Z",
+        "profile_picture": "",
+        "short_bio": "",
+        "interests": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "rabble.user",
+    "pk": 5,
+    "fields": {
+        "password": "test",
+        "last_login": "2025-04-21T16:06:45Z",
+        "is_superuser": false,
+        "username": "morgan",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-21T16:06:42Z",
+        "profile_picture": "",
+        "short_bio": "",
+        "interests": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "rabble.user",
+    "pk": 6,
+    "fields": {
+        "password": "test",
+        "last_login": "2025-04-21T16:06:55Z",
+        "is_superuser": false,
+        "username": "drew",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-21T16:06:51Z",
+        "profile_picture": "",
+        "short_bio": "",
+        "interests": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "rabble.community",
+    "pk": 1,
+    "fields": {
+        "community_name": "CompSci Friends",
+        "owner": 1,
+        "users": []
+    }
+},
+{
+    "model": "rabble.community",
+    "pk": 2,
+    "fields": {
+        "community_name": "default",
+        "owner": 2,
+        "users": []
+    }
+},
+{
+    "model": "rabble.subrabble",
+    "pk": 1,
+    "fields": {
+        "visibility": 1,
+        "community": 2,
+        "subrabble_name": "cs-courses",
+        "description": "subrabble about cs courses (HW3)",
+        "anonymous_permissions": false,
+        "users": []
+    }
+},
+{
+    "model": "rabble.subrabble",
+    "pk": 2,
+    "fields": {
+        "visibility": 1,
+        "community": 2,
+        "subrabble_name": "python",
+        "description": "subrabble about python (HW3)",
+        "anonymous_permissions": false,
+        "users": []
+    }
+},
+{
+    "model": "rabble.subrabble",
+    "pk": 3,
+    "fields": {
+        "visibility": 1,
+        "community": 2,
+        "subrabble_name": "web-dev",
+        "description": "subrabble about web dev (HW3)",
+        "anonymous_permissions": false,
+        "users": []
+    }
+},
+{
+    "model": "rabble.post",
+    "pk": 1,
+    "fields": {
+        "subrabble": 1,
+        "user": 3,
+        "title": "CMSC 14100",
+        "body": "This was my first CS course!",
+        "anonymity": false
+    }
+},
+{
+    "model": "rabble.post",
+    "pk": 2,
+    "fields": {
+        "subrabble": 1,
+        "user": 3,
+        "title": "CMSC 14200",
+        "body": "This was my second CS course!",
+        "anonymity": false
+    }
+},
+{
+    "model": "rabble.post",
+    "pk": 3,
+    "fields": {
+        "subrabble": 1,
+        "user": 3,
+        "title": "CMSC 14300",
+        "body": "This was my third CS course!",
+        "anonymity": false
+    }
+},
+{
+    "model": "rabble.comment",
+    "pk": 1,
+    "fields": {
+        "parent": null,
+        "post": 1,
+        "user": 2,
+        "body": "This was also my first CS course :)",
+        "anonymity": false
+    }
+},
+{
+    "model": "rabble.comment",
+    "pk": 2,
+    "fields": {
+        "parent": null,
+        "post": 1,
+        "user": 4,
+        "body": "This was ALSO my first CS course :D",
+        "anonymity": false
+    }
+},
+{
+    "model": "rabble.comment",
+    "pk": 3,
+    "fields": {
+        "parent": null,
+        "post": 1,
+        "user": 5,
+        "body": "This was ALSO MY first CS course :P",
+        "anonymity": false
+    }
+}
+]
