@@ -1,0 +1,7 @@
+{% extends "rabble/base.html" %}
+
+{% block content %}
+<p>
+   Log in to access site contents! {{welcome}}
+</p>
+{% endblock content %}
