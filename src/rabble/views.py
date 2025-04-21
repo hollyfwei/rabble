@@ -38,6 +38,7 @@ def post_create(request, identifier):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
+
             form.save()
             return redirect(reverse('subrabble-detail', identifier=subrabble.identifier))
     else:
@@ -56,6 +57,8 @@ def post_edit(request, identifier, pk):
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
+            post.user = request.user
+            post.save()
             form.save()
             return redirect("post-detail", identifier=subrabble.identifier, pk=post.pk)
     else:
