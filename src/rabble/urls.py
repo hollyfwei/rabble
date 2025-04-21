@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("profile/", views.profile, name="profile"),
-    path("!<slug:identifier>/", views.subrabble_detail, name="subrabble-detail")
+    path("!<slug:identifier>/", views.subrabble_detail, name="subrabble-detail"),
+    path("!<slug:identifier>/<int:pk>/", views.post_detail, name="post-detail")
 ]
