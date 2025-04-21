@@ -12,7 +12,7 @@
                     <strong>!{{ sr.identifier }}</strong> — {{ sr.subrabble_name }}<br>
                     <small class="text-muted">{{ sr.description }}</small>
                 </div>
-                <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                <a href="{% url 'subrabble-detail' sr.identifier %}" class="btn btn-sm btn-outline-primary">View</a>
                 </li>
             {% endfor %}
             </ul>
