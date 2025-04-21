@@ -31,3 +31,8 @@ Models generated with Generative AI systems...
 Additional Tasks
     ChatGPT - indicated task should be completed in the admin.py file 
 
+# HW3 References
+
+Additional Tasks
+    ChatGPT - indicated that tasks should be completed by using the @login_required decorator 
+    ChatGPT - indicated that user.is_authenticated could be used in the index.html page
