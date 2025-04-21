@@ -51,7 +51,7 @@ class Subrabble(models.Model):
         return f"{self.subrabble_name} in {self.community.community_name}"
 
 class Post(models.Model):
-    subrabble = models.ForeignKey(Subrabble, on_delete=models.CASCADE)
+    subrabble = models.ForeignKey(Subrabble, on_delete=models.CASCADE, related_name='posts')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField()
     body = models.TextField()

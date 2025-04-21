@@ -13,4 +13,6 @@ def profile(request):
 
 def subrabble_detail(request, identifier):
     subrabble = Subrabble.objects.get(identifier=identifier)
-    return render(request, "rabble/subrabble_detail.html", {"subrabble": subrabble})
+    posts = subrabble.posts.all()
+    return render(request, "rabble/subrabble_detail.html", 
+                  {"subrabble": subrabble, "posts": posts})
