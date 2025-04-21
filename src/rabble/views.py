@@ -57,7 +57,7 @@ def post_edit(request, identifier, pk):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return redirect(reverse('post-detail', identifier=subrabble.identifier, pk=post.pk))
+            return redirect("post-detail", identifier=subrabble.identifier, pk=post.pk)
     else:
         form = PostForm(instance=post)
 
