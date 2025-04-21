@@ -64,7 +64,7 @@ class Post(models.Model):
             return f"Post by {self.user.username} in {self.subrabble.subrabble_name}: {self.title}"
 
 class Comment(models.Model):
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='comments')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
