@@ -32,6 +32,7 @@ class Follow(models.Model):
         return f"{self.follower.username} follows {self.followee.username}"
     
 class Subrabble(models.Model):
+    identifier = models.CharField(max_length=100, unique=True)
     class Visibility(models.IntegerChoices):
         PUBLIC = 1, "Public"
         PRIVATE = 2, "Private"
