@@ -43,7 +43,7 @@ def post_create(request, identifier):
             post.user = request.user
             post.subrabble = subrabble
             post.save()
-            return redirect(reverse('subrabble-detail', identifier=subrabble.identifier))
+            return redirect('subrabble-detail', identifier=subrabble.identifier)
     else:
         form = PostForm()
     return render(request, "rabble/post_form.html", {"form": form, "subrabble": subrabble})
