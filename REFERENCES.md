@@ -33,6 +33,14 @@ Additional Tasks
 
 # HW3 References
 
+Main Tasks
+    Used ChatGPT as a reference to help solve issue with user needing to be assigned in 
+    post_edit and post_create
+    
 Additional Tasks
-    ChatGPT - indicated that tasks should be completed by using the @login_required decorator 
+    ChatGPT - indicated that tasks should be completed by using the @login_required 
+    decorator 
     ChatGPT - indicated that user.is_authenticated could be used in the index.html page
+    Used copilot AI as a reference to help add messages (added to base.html as an extra 
+    functionality - not assigned in hw)
+
