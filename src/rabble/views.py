@@ -35,11 +35,14 @@ def post_detail(request, identifier, pk):
 @login_required
 def post_create(request, identifier):
     subrabble = Subrabble.objects.get(identifier=identifier)
+
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-
-            form.save()
+            post = form.save(commit=False)
+            post.user = request.user
+            post.subrabble = subrabble
+            post.save()
             return redirect(reverse('subrabble-detail', identifier=subrabble.identifier))
     else:
         form = PostForm()
@@ -50,6 +53,7 @@ def post_edit(request, identifier, pk):
     subrabble = Subrabble.objects.get(identifier=identifier)
     post = get_object_or_404(Post, pk=pk)
 
+    # Check if the user is the owner of the post
     if post.user != request.user:
         messages.warning(request, "You are not authorized to edit this post.")
         return redirect("post-detail", identifier=subrabble.identifier, pk=post.pk)
@@ -57,9 +61,10 @@ def post_edit(request, identifier, pk):
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
-            post.user = request.user
-            post.save()
-            form.save()
+            edited_post = form.save(commit=False)
+            edited_post.user = request.user
+            edited_post.subrabble = subrabble
+            edited_post.save()
             return redirect("post-detail", identifier=subrabble.identifier, pk=post.pk)
     else:
         form = PostForm(instance=post)
