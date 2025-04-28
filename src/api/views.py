@@ -8,40 +8,90 @@ from .serializers import *
 
 @api_view(['GET'])
 def subrabble_list(request):
+    # Gets all the subRabbles
     if request.method == 'GET':
         subrabbles = Subrabble.objects.all()
         serializer = SubrabbleSerializer(subrabbles, many=True)
         return Response(serializer.data)
+    
+
+@api_view(['GET'])
+def subrabble_detail(request, identifier):
+    try:
+        subrabble = Subrabble.objects.get(identifier=identifier)
+    except Subrabble.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    # Gets the subRabble with the given identifier
+    if request.method == 'GET':
+        serializer = SubrabbleSerializer(subrabble)
+        return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+def post_list(request, identifier):
+    try:
+        subrabble = Subrabble.objects.get(identifier=identifier)
+    except Subrabble.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    # Gets all the posts in the given subRabble
+    if request.method == 'GET':
+        posts = Post.objects.filter(subrabble=subrabble)
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
+
+    # Creates a new post in the given subRabble
     elif request.method == 'POST':
-        serializer = SubrabbleSerializer(data=request.data)
+        serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-@api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
-def subrabble_detail(request, pk):
+
+
+@api_view(['GET', 'PATCH', 'DELETE'])
+def post_detail(request, identifier, pk):
     try:
-        subrabble = Subrabble.objects.get(pk=pk)
+        subrabble = Subrabble.objects.get(identifier=identifier)
     except Subrabble.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
+    try:
+        post = Post.objects.get(pk=pk, subrabble=subrabble)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    # Gets the post with primary key pk
     if request.method == 'GET':
-        serializer = SubrabbleSerializer(subrabble)
+        serializer = PostSerializer(post)
         return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = SubrabbleSerializer(subrabble, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Updates attributes of the post with primary key pk
     elif request.method == 'PATCH':
-        serializer = SubrabbleSerializer(subrabble, data=request.data, partial=True)
+        serializer = PostSerializer(post, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Deletes the post with priamry key pk
     elif request.method == 'DELETE':
-        subrabble.delete()
+        post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
+class SubrabbleList(generics.ListCreateAPIView):
+    queryset = Subrabble.objects.all()
+    serializer_class = SubrabbleSerializer
+
+class SubrabbleDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Subrabble.objects.all()
+    serializer_class = SubrabbleSerializer
+
+class PostList(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
