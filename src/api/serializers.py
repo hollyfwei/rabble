@@ -3,17 +3,19 @@ from rabble.models import *
 
 class SubrabbleSerializer(serializers.ModelSerializer):
     identifier_str = serializers.CharField(source='identifier', read_only=True)
+    visibility_str = serializers.ChoiceField(choices=Subrabble.visibility.choices)
     community_str = serializers.CharField(source='community.community_name', read_only=True)
     subrabble_str = serializers.CharField(source='subrabble_name', read_only=True)
     description_str = serializers.CharField(source='description', read_only=True)
     anonymous_permissions_str = serializers.BooleanField(source='anonymous_permissions', read_only=True)
-    
+    users_str = serializers.ListField(source='users', read_only=True)
+
     class Meta:
         model = Subrabble
         fields = ['identifier', 'visibility', 'community', 'subrabble_name', 
                   'description', 'anonymous_permissions', 'users', 'identifier_str',
-                  'community_str', 'subrabble_str', 'description_str',
-                  'anonymous_permissions_str']
+                  'visibility_str', 'community_str', 'subrabble_str', 
+                  'description_str', 'anonymous_permissions_str', 'users_str']
 
 class PostSerializer(serializers.ModelSerializer):
     identifier_str = serializers.CharField(source='identifier', read_only=True)
