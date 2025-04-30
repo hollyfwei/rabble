@@ -28,11 +28,11 @@ class PostSerializer(serializers.ModelSerializer):
     
     subrabble_str = serializers.CharField(source='subrabble.subrabble_name', read_only=True)
     user_str = serializers.CharField(source='user.username', read_only=True)
-    title_str = serializers.CharField(source='title', read_only=True)
+    title = serializers.CharField(source='title', read_only=True)
     body_str = serializers.CharField(source='body', read_only=True)
     anonymity_str = serializers.BooleanField(source='anonymity', read_only=True)
 
     class Meta:
         model = Post
         fields = ['subrabble_identifier_str', 'subrabble', 'user', 'title', 'body', 'anonymity',
-                  'subrabble_str', 'user_str', 'title_str', 'body_str', 'anonymity_str']
+                  'subrabble_str', 'user_str', 'body_str', 'anonymity_str']
