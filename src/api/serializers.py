@@ -35,4 +35,4 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['subrabble_identifier_str', 'subrabble', 'user', 'title', 'body', 'anonymity',
-                  'subrabble_str', 'title_str', 'body_str', 'anonymity_str']
+                  'subrabble_str', 'user_str', 'title_str', 'body_str', 'anonymity_str']
