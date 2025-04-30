@@ -15,6 +15,6 @@
   {
     "title" : "CMSC 14100",
     "subrabble" : "cs-courses",
-    "user" : "alex (says anonymous if anonymous)",
+    "author" : "alex",
     "body" : "This was my first CS course!"
   }
