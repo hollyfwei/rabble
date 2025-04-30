@@ -3,7 +3,7 @@ from rabble.models import *
 
 class SubrabbleSerializer(serializers.ModelSerializer):
     identifier_str = serializers.CharField(source='identifier', read_only=True)
-    visibility_str = serializers.ChoiceField(choices=Subrabble.visibility.choices)
+    visibility_str = serializers.MethodField(source='get_visibility_display', read_only=True)
     community_str = serializers.CharField(source='community.community_name', read_only=True)
     subrabble_str = serializers.CharField(source='subrabble_name', read_only=True)
     description_str = serializers.CharField(source='description', read_only=True)
