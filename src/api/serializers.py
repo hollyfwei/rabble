@@ -24,7 +24,7 @@ class SubrabbleSerializer(serializers.ModelSerializer):
         return obj.get_visibility_display()
 
 class PostSerializer(serializers.ModelSerializer):
-    identifier_str = serializers.CharField(source='identifier', read_only=True)
+    subrabble_identifier_str = serializers.CharField(source='subrabble.identifier', read_only=True)
     subrabble_str = serializers.CharField(source='subrabble.subrabble_name', read_only=True)
     title_str = serializers.CharField(source='title', read_only=True)
     body_str = serializers.CharField(source='body', read_only=True)
@@ -32,6 +32,6 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['identifier', 'subrabble', 'user', 'title', 'body', 'anonymity',
+        fields = ['subrabble_identifier', 'subrabble', 'user', 'title', 'body', 'anonymity',
                   'identifier_str', 'subrabble_str', 'title_str', 'body_str', 
                   'anonymity_str']
