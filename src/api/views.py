@@ -90,8 +90,15 @@ class SubrabbleDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'identifier'
 
 class PostList(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+    def get_queryset(self):
+        identifier = self.kwargs['identifier']
+        return Post.objects.filter(subrabble__identifier=identifier)
+    def perform_create(self, serializer):
+        identifier = self.kwargs['identifier']
+        subrabble = Subrabble.objects.get(identifier=identifier)
+        serializer.save(subrabble=subrabble)
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
