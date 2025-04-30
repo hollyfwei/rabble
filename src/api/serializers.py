@@ -8,7 +8,7 @@ class SubrabbleSerializer(serializers.ModelSerializer):
     subrabble_str = serializers.CharField(source='subrabble_name', read_only=True)
     description_str = serializers.CharField(source='description', read_only=True)
     anonymous_permissions_str = serializers.BooleanField(source='anonymous_permissions', read_only=True)
-    users_str = serializers.ListField(source='users', read_only=True)
+    users_str = serializers.StringRelatedField(source='users', many=True, read_only=True)
 
     class Meta:
         model = Subrabble
