@@ -16,6 +16,9 @@ class SubrabbleSerializer(serializers.ModelSerializer):
                   'description', 'anonymous_permissions', 'users', 'identifier_str',
                   'visibility_str', 'community_str', 'subrabble_str', 
                   'description_str', 'anonymous_permissions_str', 'users_str']
+        extra_kwargs = {
+            'url': {'lookup_field': 'identifier'}
+        }
 
     def get_visibility_str(self, obj):
         return obj.get_visibility_display()

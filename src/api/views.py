@@ -87,6 +87,7 @@ class SubrabbleList(generics.ListCreateAPIView):
 class SubrabbleDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Subrabble.objects.all()
     serializer_class = SubrabbleSerializer
+    lookup_field = 'identifier'
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
