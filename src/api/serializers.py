@@ -11,7 +11,7 @@ class SubrabbleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subrabble
         fields = ['identifier', 'visibility', 'community', 'subrabble_name', 
-                  'description', 'anonymous_permissions', 'users', 'identity_str',
+                  'description', 'anonymous_permissions', 'users', 'identifier_str',
                   'community_str', 'subrabble_str', 'description_str',
                   'anonymous_permissions_str']
 
