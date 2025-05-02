@@ -44,3 +44,8 @@ Additional Tasks
     Used copilot AI as a reference to help add messages (added to base.html as an extra 
     functionality - not assigned in hw)
 
+# HW4 References
+
+Main Tasks
+    Used ChatGPT to troubleshoot task 1 and to understand the .SerializerMethodField() in task 2
+
