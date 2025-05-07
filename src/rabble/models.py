@@ -36,7 +36,7 @@ class Subrabble(models.Model):
     class Visibility(models.IntegerChoices):
         PUBLIC = 1, "Public"
         PRIVATE = 2, "Private"
-    visibility = models.PositiveSmallIntegerField(choices=Visibility.choices, default=Visibility.PUBLIC)
+    visibility = models.IntegerField(choices=Visibility.choices, default=Visibility.PUBLIC)
 
     community = models.ForeignKey(Community, on_delete=models.CASCADE)
     subrabble_name = models.TextField()
