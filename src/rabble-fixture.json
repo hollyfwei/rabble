@@ -66,7 +66,7 @@
     "model": "rabble.user",
     "pk": 4,
     "fields": {
-        "password": "chris",
+        "password": "test",
         "last_login": "2025-04-21T16:06:28Z",
         "is_superuser": false,
         "username": "chris",
@@ -147,10 +147,11 @@
     "model": "rabble.subrabble",
     "pk": 1,
     "fields": {
+        "identifier": "cs-courses",
         "visibility": 1,
         "community": 2,
-        "subrabble_name": "cs-courses",
-        "description": "subrabble about cs courses (HW3)",
+        "subrabble_name": "CS Courses",
+        "description": "subrabble about cs courses",
         "anonymous_permissions": false,
         "users": []
     }
@@ -159,10 +160,11 @@
     "model": "rabble.subrabble",
     "pk": 2,
     "fields": {
+        "identifier": "python",
         "visibility": 1,
         "community": 2,
-        "subrabble_name": "python",
-        "description": "subrabble about python (HW3)",
+        "subrabble_name": "Python",
+        "description": "subrabble about python",
         "anonymous_permissions": false,
         "users": []
     }
@@ -171,10 +173,11 @@
     "model": "rabble.subrabble",
     "pk": 3,
     "fields": {
+        "identifier": "web-dev",
         "visibility": 1,
         "community": 2,
-        "subrabble_name": "web-dev",
-        "description": "subrabble about web dev (HW3)",
+        "subrabble_name": "Web Dev",
+        "description": "subrabble about web dev",
         "anonymous_permissions": false,
         "users": []
     }
