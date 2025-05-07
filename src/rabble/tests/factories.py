@@ -2,6 +2,7 @@ import factory
 from factory import Faker, SubFactory, PostGenerationMethodCall
 from factory.django import DjangoModelFactory
 from faker import Faker
+from django.utils.text import slugify
 from rabble.models import User, Community, Subrabble, Post, Comment
 
 class UserFactory(DjangoModelFactory):
@@ -48,13 +49,16 @@ class SubRabbleFactory(DjangoModelFactory):
     class Meta:
         model = Subrabble
 
-    identifier = Faker('slug')
     visibility = Faker('random_element', elements=[Subrabble.Visibility.PUBLIC, Subrabble.Visibility.PRIVATE])
     community = SubFactory(CommunityFactory)
-    subrabble_name = Faker('catch_phrase')
+    subrabble_name = Faker('catch_phrase', nb_words=2)
     description = Faker('text', max_nb_chars=200)
     anonymous_permissions = Faker('boolean')
     
+    @factory.lazy_attribute
+    def identifier(self):
+        return slugify(self.subrabble_name)
+
     @factory.post_generation
     def users(self, create, extracted, **kwargs):
         if not create:
