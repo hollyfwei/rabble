@@ -1,6 +1,6 @@
 
 from faker import Faker
-from factories import UserFactory, CommunityFactory, SubRabbleFactory, PostFactory, CommentFactory
+from .factories import UserFactory, CommunityFactory, SubRabbleFactory, PostFactory, CommentFactory
 from django.urls import reverse
 import random
 from rabble.models import Post
@@ -70,7 +70,7 @@ def test_post_create_view(client):
     client.force_login(user)
     faker = Faker()  
 
-    subrabble = SubRabbleFactory.create(subrabble_name="Test Post Subrabble")
+    subrabble = SubRabbleFactory.create(subrabble_name="Test Post Views Subrabble")
     data = {
         "title": faker.sentence(nb_words=4),
         "body": faker.paragraph(nb_sentences=3),

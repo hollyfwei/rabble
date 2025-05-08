@@ -1,6 +1,6 @@
 import pytest
 from rest_framework.test import APIClient
-from factories import SubRabbleFactory, PostFactory, CommentFactory, UserFactory
+from .factories import SubRabbleFactory, PostFactory, CommentFactory, UserFactory
 from django.urls import reverse
 from faker import Faker
 from rabble.models import Post
