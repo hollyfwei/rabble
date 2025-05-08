@@ -22,4 +22,10 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['title', 'subrabble_identifier', 'author', 'body']
+        fields = ['id', 'title', 'subrabble_identifier', 'author', 'body']
+        read_only_fields = ['subrabble', 'user']
+
+    def create(self, validated_data):
+        user = validated_data.pop('user')
+        subrabble = validated_data.pop('subrabble')
+        return Post.objects.create(user=user, subrabble=subrabble, **validated_data)

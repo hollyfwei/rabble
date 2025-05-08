@@ -95,12 +95,16 @@ class PostList(generics.ListCreateAPIView):
     def get_queryset(self):
         identifier = self.kwargs['identifier']
         return Post.objects.filter(subrabble__identifier=identifier)
+    
     def perform_create(self, serializer):
         identifier = self.kwargs['identifier']
         subrabble = Subrabble.objects.get(identifier=identifier)
-        serializer.save(subrabble=subrabble)
+        serializer.save(subrabble=subrabble, user=self.request.user)
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+    def get_queryset(self):
+        identifier = self.kwargs['identifier']
+        return Post.objects.filter(subrabble__identifier=identifier)
     
