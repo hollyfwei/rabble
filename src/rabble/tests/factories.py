@@ -1,5 +1,5 @@
 import factory
-from factory import Faker, SubFactory, PostGenerationMethodCall
+from factory import Faker, SubFactory, PostGenerationMethodCall, Sequence
 from factory.django import DjangoModelFactory
 from django.utils import timezone
 from django.utils.text import slugify
@@ -9,8 +9,8 @@ class UserFactory(DjangoModelFactory):
     class Meta:
         model = User
 
-    first_name = Faker('first_name')
-    last_name = Faker('last_name')
+    first_name = Sequence(lambda n: f"first{n}")
+    last_name = Sequence(lambda n: f"last{n}")
 
     @factory.lazy_attribute
     def username(self):
@@ -30,7 +30,7 @@ class CommunityFactory(DjangoModelFactory):
     class Meta: 
         model = Community
     
-    community_name = Faker('company')
+    community_name = Sequence(lambda n: f"community{n}")
     owner = SubFactory(UserFactory)
     
     @factory.post_generation
@@ -51,7 +51,7 @@ class SubRabbleFactory(DjangoModelFactory):
 
     visibility = Faker('random_element', elements = [Subrabble.Visibility.PUBLIC, Subrabble.Visibility.PRIVATE])
     community = SubFactory(CommunityFactory)
-    subrabble_name = Faker('catch_phrase')
+    subrabble_name = Sequence(lambda n: f"subrabble{n}")
     description = Faker('text', max_nb_chars=200)
     anonymous_permissions = Faker('boolean')
     
@@ -77,7 +77,7 @@ class PostFactory(DjangoModelFactory):
     
     subrabble = SubFactory(SubRabbleFactory)
     user = SubFactory(UserFactory)
-    title = Faker('sentence',nb_words=4)
+    title = Sequence(lambda n: f"post{n}")
     body = Faker('paragraph', nb_sentences=3)
     anonymity = Faker('boolean')
 
