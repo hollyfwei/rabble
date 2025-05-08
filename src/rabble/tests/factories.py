@@ -1,7 +1,7 @@
 import factory
 from factory import Faker, SubFactory, PostGenerationMethodCall
 from factory.django import DjangoModelFactory
-from faker import Faker
+from django.utils import timezone
 from django.utils.text import slugify
 from rabble.models import User, Community, Subrabble, Post, Comment
 
@@ -23,7 +23,7 @@ class UserFactory(DjangoModelFactory):
     password = PostGenerationMethodCall('set_password', 'Password123!')
     is_staff=False
     is_active=True
-    date_joined=Faker('date_time_this_decade', before_now=True, after_now=False)
+    date_joined=timezone.now()
     
 
 class CommunityFactory(DjangoModelFactory):
@@ -49,9 +49,9 @@ class SubRabbleFactory(DjangoModelFactory):
     class Meta:
         model = Subrabble
 
-    visibility = Faker('random_element', elements=[Subrabble.Visibility.PUBLIC, Subrabble.Visibility.PRIVATE])
+    visibility = Faker('random_element', elements = [Subrabble.Visibility.PUBLIC, Subrabble.Visibility.PRIVATE])
     community = SubFactory(CommunityFactory)
-    subrabble_name = Faker('catch_phrase', nb_words=2)
+    subrabble_name = Faker('catch_phrase')
     description = Faker('text', max_nb_chars=200)
     anonymous_permissions = Faker('boolean')
     
@@ -77,8 +77,8 @@ class PostFactory(DjangoModelFactory):
     
     subrabble = SubFactory(SubRabbleFactory)
     user = SubFactory(UserFactory)
-    title = Faker('sentence', nb_words=6)
-    body = Faker('text', max_nb_chars=200)
+    title = Faker('sentence',nb_words=4)
+    body = Faker('paragraph', nb_sentences=3)
     anonymity = Faker('boolean')
 
 
