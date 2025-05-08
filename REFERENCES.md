@@ -49,3 +49,11 @@ Additional Tasks
 Main Tasks
     Used ChatGPT to troubleshoot task 1 and to understand the .SerializerMethodField() in task 2
 
+# HW5 References
+
+Main Tasks
+    Used Faker documentation to see list of prompts (like company, catch phrase, etc.) available
+    Used ChatGPT to ...
+        - (1) troubleshoot issues encountered with test_post_create_view - referenced the addition of a create method to a serializer to dictate how a post is made with validated data and to 
+        - (2) improve my factories by referencing how to add lazy_attributes that are attributes based on other existing attributes - for example, username and email of users will be based on the first and last names
+
