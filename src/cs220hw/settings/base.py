@@ -18,7 +18,7 @@ from google.cloud import secretmanager
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(DEBUG=(bool, True))
 env_file = os.path.join(BASE_DIR, '.env')
 if os.path.isfile(env_file):
     # read a local .env file
