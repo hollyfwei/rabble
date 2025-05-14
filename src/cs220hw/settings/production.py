@@ -24,3 +24,5 @@ STORAGES = {
 "whitenoise.storage.CompressedManifestStaticFilesStorage",
  },
 } 
+
+MIDDLEWARE += ["whitenoise.middleware.WhiteNoiseMiddleware"]
