@@ -15,4 +15,10 @@ Rubric Item (1) : rabble-fixture.json file has errors that prevent it from loadi
 
 Rubric Item (1) : Submitting POST request in API.md fails or does not create a post.
   Was having an issue with verifying the user because there was no authentication and my code was attempting to get the user from the request, now the user can be specified in the post field.
+
+Rubric Item (2): Could not log in as alex (with password test)
+  Fixed this by changing the password in the fixture file to the hashed password rather than plain text.
+
+Did not address the following rubric items: 
+  Clicking on the thumbs-up icon does not update the number of likes
   
