@@ -97,10 +97,9 @@ class PostList(generics.ListCreateAPIView):
         return Post.objects.filter(subrabble__identifier=identifier)
     
     def perform_create(self, serializer):
-        user = self.request.user if self.request.user.is_authenticated else None
         identifier = self.kwargs['identifier']
         subrabble = Subrabble.objects.get(identifier=identifier)
-        serializer.save(subrabble=subrabble, user=user)
+        serializer.save(subrabble=subrabble)
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
