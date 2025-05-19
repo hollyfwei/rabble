@@ -52,7 +52,7 @@ class Subrabble(models.Model):
 
 class Post(models.Model):
     subrabble = models.ForeignKey(Subrabble, on_delete=models.CASCADE, related_name='posts')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.TextField()
     body = models.TextField()
     anonymity = models.BooleanField(default=False)
