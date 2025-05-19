@@ -9,13 +9,29 @@
     "visibility_status": "Public",
     "anonymous_permissions": false
   }
+
+  {
+    "subrabble_name": "Test SubRabble",
+    "identifier": "test-subrabble",
+    "community_name": "default",
+    "description": "subrabble for testing",
+    "users": [],
+    "visibility_status": "Public",
+    "anonymous_permissions": false
+  }
+    
     
 
 ## POST: /api/subrabbles/!cs-courses/posts
 
   {
     "title": "CMSC 14100",
-    "subrabble_identifier": "cs-courses",
     "author": "alex",
     "body": "This was my first CS course!"
+  }
+
+  {
+    "title": "Test Post #1",
+    "author": "None",
+    "body": "This is test post number one."
   }
