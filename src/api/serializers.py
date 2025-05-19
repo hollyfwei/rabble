@@ -19,13 +19,13 @@ class SubrabbleSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     subrabble_identifier= serializers.CharField(source='subrabble.identifier', read_only=True)
     author = serializers.CharField(source='user.username', read_only=True)
+    user = serializers.SlugRelatedField(slug_field='username',queryset=User.objects.all())
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'subrabble_identifier', 'author', 'body']
-        read_only_fields = ['subrabble', 'user']
+        fields = ['id', 'title', 'subrabble_identifier', 'author', 'body', 'user']
+        read_only_fields = ['subrabble']
 
     def create(self, validated_data):
-        user = validated_data.pop('user')
         subrabble = validated_data.pop('subrabble')
-        return Post.objects.create(user=user, subrabble=subrabble, **validated_data)
+        return Post.objects.create(subrabble=subrabble, **validated_data)
